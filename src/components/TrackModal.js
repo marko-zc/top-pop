@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { List, ListItem, ListItemText, ListItemButton } from "@mui/material";
+import { List, ListItem, ListItemText } from "@mui/material";
 
 
 const style = {
@@ -22,10 +22,6 @@ const style = {
 
 class TrackModal extends React.Component
 {
-    constructor(props)
-    {
-        super(props)
-    }
     
     render()
     {
