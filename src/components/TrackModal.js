@@ -42,10 +42,16 @@ class TrackModal extends React.Component
         >
                 <Fade in={isModalOpen}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2">
+                        <Typography id="transition-modal-title" variant="h5" component="h2" align="center">
                             {track.title}
                         </Typography>
                         <List>
+                            <ListItem>
+                                <audio controls>
+                                    <source src={track.preview} />
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </ListItem>
                             <ListItem>
                                 <ListItemText primary={"Chart position: " + track.position}/>
                             </ListItem>
