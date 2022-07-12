@@ -1,4 +1,7 @@
+import { List, ListItem, ListItemText, ListItemButton } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
+import TrackModal from "./components/TrackModal";
 
 const sortOptions = [
   {
@@ -22,12 +25,14 @@ class App extends React.Component
   {
     super(props);
     this.state = {
-        error: null,
-        isLoaded: false,
-        data: null,
-        selectedSortOption: "chart"
-    }
-      this.changeSort = this.changeSort.bind(this);
+      error: null,
+      isLoaded: false,
+      data: null,
+      selectedSortOption: "chart",
+      isModalOpen: false,
+      selectedTrack: null
+    };
+    this.changeSort = this.changeSort.bind(this);
   }
   async componentDidMount()
     {
@@ -62,10 +67,24 @@ class App extends React.Component
         this.setState({ tracks: this.state.tracks.sort((a, b) => {return a.duration - b.duration})})
       }
     }
-
+    
+    handleOpen = (track) => {
+      this.setState({
+        selectedTrack: track,
+        isModalOpen: true
+      });
+    };
+  
+    handleClose = () => {
+      this.setState({
+        isModalOpen: false
+      });
+  };
+  
   render()
   {
-    const { error, isLoaded, tracks } = this.state;
+    const { error, isLoaded, tracks, selectedTrack, isModalOpen } = this.state;
+
     if(error) {
       return <div>Error: {error.message}</div>
     } else if (!isLoaded){
@@ -81,9 +100,24 @@ class App extends React.Component
             ))}
           </select>
 
-          <ul>
-            {tracks.map((track) => <li>{track.title}</li>)}
-          </ul>
+        <Box>
+          <List>
+            {tracks.map((track) => 
+              <ListItem>
+                <ListItemButton>
+                  <ListItemText primary={track.title} onClick={() => this.handleOpen(track)} />
+                </ListItemButton>
+              </ListItem>)}
+          </List>
+        </Box>
+        <TrackModal isModalOpen={isModalOpen} track={selectedTrack} handleClose={this.handleClose} />
+          {/* <Modal
+           track={selectedTrack}
+           open={isModalOpen}
+           onClose={this.handleClose}
+           aria-labelledby="modal-modal-title"
+           aria-describedby="modal-modal-description"
+           /> */}
         </div>
       )
     }
