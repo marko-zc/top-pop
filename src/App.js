@@ -102,8 +102,8 @@ class App extends React.Component
       return <div>Loading...</div>
     } else {
       return (
-        <Container>
-          <Typography color="TextPrimary" variant="h1">Top tracks:</Typography>
+        <Container maxWidth="sm">
+          <Typography color="TextPrimary" variant="h2" align="center">Top tracks:</Typography>
 
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-standard-label">Sort by:</InputLabel>
