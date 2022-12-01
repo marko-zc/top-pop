@@ -44,7 +44,7 @@ class App extends React.Component
   }
   async componentDidMount()
     {
-      await fetch("https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart")
+      await fetch("https://api.deezer.com/chart")
       .then(response => response.json())
       .then(
         (data) => {
